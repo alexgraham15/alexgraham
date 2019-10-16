@@ -1,5 +1,5 @@
 export default function menuLayout(state={
-    menuOpen: true,
+    menuOpen: false,
     menuVisable: "container-full"
 }, action) {
     switch (action.type){

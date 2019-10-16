@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Options = [
   {name:'About Me',
-  link:'/AboutMe'},
+  link:'/AboutAlex'},
   {name:'Projects',
   link:'/Projects'},
   {name:'CV',
@@ -74,6 +74,7 @@ const MenuOption = styled.h2({
 
 
 class Menu extends Component {
+  
    handleMenuSelect(link) {
     this.props.history.push(`${link}`)
   }

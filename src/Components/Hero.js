@@ -10,12 +10,12 @@ const Container = styled.div({
 
 const createKeyFrames = (delay, from, to) =>(
   Keyframes.Spring({
-    show: {  to: {opacity: 1,  transform: 'translate3d(0px,0,0)'},
+    show: {  delay:delay,to: {opacity: 1,  transform: 'translate3d(0px,0,0)'},
                     from: {opacity: 0,  transform: 'translate3d(0,-25px,0)'},
                     config:{duration:1500}}
   })
 )
-const Content = createKeyFrames(10000, 0, 22)
+const Content = createKeyFrames(1500, 0, 22)
 
 export default function Hero(props){
     const springProps = useSpring({

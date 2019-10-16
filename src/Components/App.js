@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Hero from './Hero'
-import Menu from './Menu'
+import Hero from './Hero1'
+import Menu from './Menu1'
 import { openMenu, closeMenu } from '../Actions/menuActions'
 import '../CSS/App.css';
 
@@ -30,6 +30,7 @@ class App extends Component{
           <header className="App-header">
             <Switch>
               <Route  exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
+              <Route  exact path="/AboutAlex" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
             </Switch>
           </header>
         </div>
