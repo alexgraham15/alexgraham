@@ -24,12 +24,20 @@ export default function Menu(props) {
     to: { size: open ? '280px' : '0px', mainWidth:  open ? '350px' : '60px'}
   })
 
-  const menBarCSS = useRef()
-  const menuBarBottom = useSpring({
-    ref: menBarCSS,
+  const menuBarTopRef = useRef()
+  const menuBarTop = useSpring({
+    ref: menuBarTopRef,
     config: config.slow,
-    from: { opacity:0 },
-    to: { opacity: 1}
+    from: { transform: open ? "rotate(45deg) translateY(10px) scale(1)" : "rotate(0deg) translateY(0px) scale(0)" },
+    to: {transform: open ? "rotate(45deg) translateY(10px) scale(1)" : "rotate(0deg) translateY(0px) scale(1)"}
+  })
+
+  const menuBarBottomRef = useRef()
+  const menuBarBottom = useSpring({
+    ref: menuBarBottomRef,
+    config: config.slow,
+    from: { transform: open ? "rotate(-45deg) translateY(-10px) scale(1)" : "rotate(0deg) translateY(0px) scale(0)" },
+    to: {transform: open ? "rotate(-45deg) translateY(-10px) scale(1)" : "rotate(0deg) translateY(0px) scale(1)"}
   })
     
   const transRef = useRef()
@@ -59,13 +67,13 @@ export default function Menu(props) {
     props.history.push(`${link}`)
   }
   // This will orchestrate the two animations above, comment the last arg and it creates a sequence
-  useChain(open ? [menBarCSS,springRef, transRef] : [transRef, springRef, menBarCSS], [0,0, open ? 0.5 : 0.6])
+  useChain(open ? [menuBarBottomRef, menuBarTopRef,springRef, transRef] : [transRef, springRef, menuBarBottomRef, menuBarTopRef], [open ? 0.2 : 0,open ? 0.2 : 0.3, open ? 0 : 0, open ? 0.5 : 0], 1500)
 
   return (
     <MainMenuContainer style={{ ...rest, width: mainWidth }}>
       <MenuButton onClick={() => onMenuOpen()}> 
+        <MenuBar style={menuBarTop }/>
         <MenuBar style={menuBarBottom }/>
-        {/* <MenuBar style={{ ...rest, width: size }}/> */}
       </MenuButton>
       <Container style={{ ...rest, width: size }} >
         {transitions.map(({ item, key, props }) => (

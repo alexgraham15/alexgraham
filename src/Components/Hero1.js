@@ -22,15 +22,17 @@ export default function AThing2(props) {
   useEffect(() => addToList(), []);
   const [open, set] = useState(false)
   const transitions = useTransition(items, item => item.key, {
-    initial: { transform: 'translate3d(0%, -100%,0)' },
-    from: {    transform: 'translate3d(0%,-100%,0)' },
-    enter: {   transform: 'translate3d(0%, 0%,0)' },
-    leave: {   transform: 'translate3d(100%,0%,0)' }
+    config: config.slow,
+    unique: true,
+    trail: 400 ,
+    initial: { opacity: 0,transform: 'translate3d(0%, -100%,0)' },
+    from: { opacity: 0,  transform: 'translate3d(0%,-100%,0)' },
+    enter: { opacity: 1,  transform: 'translate3d(0%, 0%,0)' },
+    leave: {  opacity: 0, transform: 'translate3d(100%,0%,0)' }
   })
   return (
     <Container className={ props.className }>
     <header className="Hero-header">
-    <div onClick={() => set(open => !open)}>
       {transitions.map(({ item, props, key }) =>
         <animated.div 
           key={key} 
@@ -38,7 +40,6 @@ export default function AThing2(props) {
           {item.element}
         </animated.div>
       )}
-    </div>
     </header>
     </Container>
   )
