@@ -57,3 +57,13 @@ h2{
   left: 0px !important;
   transition: left 1.5s !important;
 }
+.container-full{
+  width:100%;
+  transition: width 1.5s ease;
+  align-self: flex-end;
+}
+.container-reduced{
+  width:calc(100% - 280px);
+  align-self: flex-end;
+  transition: width 1.5s ease;
+}

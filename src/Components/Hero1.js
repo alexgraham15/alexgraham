@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useTransition, animated, useSpring, useChain, config } from 'react-spring'
+import { useTransition, animated, config } from 'react-spring'
 import styled from 'styled-components'
 import '../CSS/Hero.css'
 
-const Container = styled.div({
-    width:"100%"
-  })
 
-export default function AThing2(props) {
+  const Container = styled(animated.div)`
+    width:100%;
+`
+
+export default function MainDiv(props) {
   const [items, setList] = useState([
     {key: 1, element: <h1>Alex Graham</h1>},
     {key: 2, element: <p>Full Stack Developer</p>}
@@ -30,6 +31,7 @@ export default function AThing2(props) {
     enter: { opacity: 1,  transform: 'translate3d(0%, 0%,0)' },
     leave: {  opacity: 0, transform: 'translate3d(100%,0%,0)' }
   })
+
   return (
     <Container className={ props.className }>
     <header className="Hero-header">

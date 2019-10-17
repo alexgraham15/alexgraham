@@ -10,9 +10,12 @@ import '../CSS/App.css';
 function mapStateToProps(store) {
   return { 
     menu: store.menuLayout.menuOpen,
-    menuVisable: store.menuLayout.menuVisable
+    menuVisable: store.menuLayout.menuVisable,
+    contWidth: store.menuLayout.containerWidth
   }
 }
+
+
 function mapDispatchToProps(dispatch) { 
   return { 
     dispatch, 
@@ -20,6 +23,7 @@ function mapDispatchToProps(dispatch) {
     menuClose:bindActionCreators(closeMenu, dispatch)
   } 
 }
+
 
 class App extends Component{
   render(){
