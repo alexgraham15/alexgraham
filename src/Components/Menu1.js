@@ -50,7 +50,7 @@ export default function Menu(props) {
     leave: { opacity: 0, transform: 'scale(0)' }
   })
 
-  function onMenuOpen(){
+  function onMenuOpen(open){
     set(open => !open)
     switch (props.nav.menu){
       case true: {
@@ -71,7 +71,7 @@ export default function Menu(props) {
 
   return (
     <MainMenuContainer style={{ ...rest, width: mainWidth }}>
-      <MenuButton onClick={() => onMenuOpen()}> 
+      <MenuButton onClick={() => onMenuOpen(open)}> 
         <MenuBar style={menuBarTop }/>
         <MenuBar style={menuBarBottom }/>
       </MenuButton>

@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useTransition, animated, config } from 'react-spring'
+import React, { useState, useEffect, useRef  } from 'react';
+import { useTransition, animated, config, useSpring } from 'react-spring'
 import styled from 'styled-components'
 import '../CSS/Hero.css'
-
 
   const Container = styled(animated.div)`
     width:100%;
 `
 
 export default function MainDiv(props) {
+  
   const [items, setList] = useState([
     {key: 1, element: <h1>Alex Graham</h1>},
     {key: 2, element: <p>Full Stack Developer</p>}
@@ -17,11 +17,10 @@ export default function MainDiv(props) {
   const addToList = () => {
     setIndex(index+1)
     var nItems = items.slice()
-    // nItems.push({key: index, item: "new"})?
     setList(nItems) 
   }
   useEffect(() => addToList(), []);
-  const [open, set] = useState(false)
+
   const transitions = useTransition(items, item => item.key, {
     config: config.slow,
     unique: true,
@@ -32,8 +31,23 @@ export default function MainDiv(props) {
     leave: {  opacity: 0, transform: 'translate3d(100%,0%,0)' }
   })
 
+  const [menuOpen,  toggleMenu] = useState(props.nav.menu)
+ 
+  const toggleSize = () =>{
+    toggleMenu(menuOpen => !menuOpen)
+    
+  }
+
+  const contentProps = useSpring({
+    from: { width:  `calc(100% - ${!menuOpen ? 350 : 0}px)`},
+    to: { width:   `calc(100% - ${menuOpen ? 350 : 0}px)`},
+    config: config.slow,
+  })
+
   return (
-    <Container className={ props.className }>
+  
+  <animated.div style={contentProps}>
+    <Container className={ props.className } onClick={e => toggleSize()}>
     <header className="Hero-header">
       {transitions.map(({ item, props, key }) =>
         <animated.div 
@@ -43,7 +57,9 @@ export default function MainDiv(props) {
         </animated.div>
       )}
     </header>
-    </Container>
+  </Container>
+  </animated.div>
+
   )
 }
 

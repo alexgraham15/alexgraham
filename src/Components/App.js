@@ -24,12 +24,11 @@ function mapDispatchToProps(dispatch) {
   } 
 }
 
-
 class App extends Component{
   render(){
     return (
       <Router>
-        <Route path="/" render={(props) => <Menu {...props} nav={this.props}/>}  />
+        <Route path="/" render={(props) => <Menu {...props} nav={this.props} />}  />
         <div className="App">
           <header className="App-header">
             <Switch>
