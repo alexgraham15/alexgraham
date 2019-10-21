@@ -10,7 +10,6 @@ import '../CSS/App.css';
 function mapStateToProps(store) {
   return { 
     menu: store.menuLayout.menuOpen,
-    menuVisable: store.menuLayout.menuVisable,
     contWidth: store.menuLayout.containerWidth
   }
 }

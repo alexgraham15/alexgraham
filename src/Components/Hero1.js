@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef  } from 'react';
-import { useTransition, animated, config, useSpring } from 'react-spring'
+import { useTransition, animated, config, useSpring, useChain } from 'react-spring'
 import styled from 'styled-components'
 import '../CSS/Hero.css'
 
@@ -21,33 +21,38 @@ export default function MainDiv(props) {
   }
   useEffect(() => addToList(), []);
 
+  const textRef = useRef()
   const transitions = useTransition(items, item => item.key, {
+    ref: textRef,
     config: config.slow,
     unique: true,
     trail: 400 ,
-    initial: { opacity: 0,transform: 'translate3d(0%, -100%,0)' },
-    from: { opacity: 0,  transform: 'translate3d(0%,-100%,0)' },
+    initial: { opacity: 0,transform: 'translate3d(0, -50%,0)' },
+    from: { opacity: 0,  transform: 'translate3d(0,-50%,0)' },
     enter: { opacity: 1,  transform: 'translate3d(0%, 0%,0)' },
-    leave: {  opacity: 0, transform: 'translate3d(100%,0%,0)' }
+    leave: {  opacity: 0, transform: 'translate3d(0%,-100%,0)' }
   })
 
   const [menuOpen,  toggleMenu] = useState(props.nav.menu)
  
   const toggleSize = () =>{
     toggleMenu(menuOpen => !menuOpen)
-    
   }
 
+  const contentRef = useRef()
   const contentProps = useSpring({
-    from: { width:  `calc(100% - ${!menuOpen ? 350 : 0}px)`},
-    to: { width:   `calc(100% - ${menuOpen ? 350 : 0}px)`},
+    ref: contentRef,
+    from: { width:  `calc(100% - ${!props.nav.menu ? 350 : 0}px)`},
+    to: { width:   `calc(100% - ${props.nav.menu ? 350 : 0}px)`},
     config: config.slow,
   })
+
+  useChain([contentRef,textRef], [0,0.5])
 
   return (
   
   <animated.div style={contentProps}>
-    <Container className={ props.className } onClick={e => toggleSize()}>
+    <Container className={ props.className }>
     <header className="Hero-header">
       {transitions.map(({ item, props, key }) =>
         <animated.div 
