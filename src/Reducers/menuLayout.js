@@ -8,6 +8,8 @@ export default function menuLayout(state={
         case "MENU_CLOSE": {
             return {...state, menuOpen: action.payload}
         }
+        default: {
+            return {...state, menuOpen: false}
+        }
     }
-    return state
 }

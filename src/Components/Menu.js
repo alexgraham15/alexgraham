@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import '../CSS/Menu.css'
-import styled from 'styled-components'
+import React, { useState, useRef } from 'react'
+import { useTransition, useSpring, useChain, config } from 'react-spring'
+import { Container, Item, MainMenuContainer, MenuBar, MenuButton } from './styles'
 
 const Options = [
-  {name:'About Me',
+  {name:'About Alex',
   link:'/AboutAlex'},
   {name:'Projects',
   link:'/Projects'},
@@ -13,99 +13,76 @@ const Options = [
   link:'/Contact'}
 ]
 
-const MenuBar = styled.span({
-  width:"30px",
-  height:"2px",
-  backgroundColor:"#fff",
-  margin: "auto",
-  transform: "rotate(0deg) translateY(0px)",
-  transition: "width 1s, transform 1s ease"
-})
+export default function Menu(props) {
+  const [open, set] = useState(props.nav.menu)
 
-const MenuButton = styled.div({
-  animation: "${keyframes`${fadeIn}`} 3s forwards",
-  width:"30px",
-  height:"30px",
-  display:"flex",
-  flexDirection:"column",
-  justifyContent: "flex-start",
-  position: "absolute",
-  top:"30px",
-  right:"0px",
-  cursor:"pointer",
-  zIndex:"1",
-  [`:hover ${MenuBar}:nth-child(1)`]: {
-    transform: "rotate(45deg) translateY(10px)",
-    transition: "width 1s, transform 1s ease",
-    width:"40px",
-    height:"2px"
-  },
-  [`:hover ${MenuBar}:nth-child(2)`]: {
-    transform: "rotate(-45deg) translateY(-10px)",
-    transition: "width 1s, transform 1s ease",
-    width:"40px",
-    height:"2px"
-  }
-})
+  const springRef = useRef()
+  const { mainWidth, size, opacity, ...rest } = useSpring({
+    ref: springRef,
+    config: config.slow,
+    from: { size: '0px', mainWidth: '60px'},
+    to: { size: open ? '280px' : '0px', mainWidth:  open ? '350px' : '60px'}
+  })
 
-const MainMenuContainer = styled.div({
-  position:"absolute",
-  top:"0px",
-  left:"-280px",
-  zIndex:"2",
-  width:"350px",
-  height:"100%",
-  transition: "left 1.5s ease",
-})
-const MenuOptionContainer = styled.div({
-  backgroundColor:"rgba(200,200,200,1)",
-  position:"absolute",
-  top:"0px",
-  left:"0px",
-  zIndex:"2",
-  width:"280px",
-  height:"100%"
-})
-const MenuOption = styled.h2({
-  color:"#fff",
-  fontWeight:"100"
-})
+  const menuBarTopRef = useRef()
+  const menuBarTop = useSpring({
+    ref: menuBarTopRef,
+    config: config.slow,
+    from: { transform: open ? "rotate(45deg) translateY(10px) scale(1)" : "rotate(0deg) translateY(0px) scale(0)" },
+    to: {transform: open ? "rotate(45deg) translateY(10px) scale(1)" : "rotate(0deg) translateY(0px) scale(1)"}
+  })
 
+  const menuBarBottomRef = useRef()
+  const menuBarBottom = useSpring({
+    ref: menuBarBottomRef,
+    config: config.slow,
+    from: { transform: open ? "rotate(-45deg) translateY(-10px) scale(1)" : "rotate(0deg) translateY(0px) scale(0)" },
+    to: {transform: open ? "rotate(-45deg) translateY(-10px) scale(1)" : "rotate(0deg) translateY(0px) scale(1)"}
+  })
+    
+  const transRef = useRef()
+  const transitions = useTransition(open ? Options : [], item => item.name, {
+    ref: transRef,
+    unique: true,
+    trail: 400 / Options.length,
+    from: { opacity: 0, transform: 'scale(0)' },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0)' }
+  })
 
-
-class Menu extends Component {
-  
-   handleMenuSelect(link) {
-    this.props.history.push(`${link}`)
-  }
-  onMenuOpen(){
-    switch (this.props.nav.menu){
+  function onMenuOpen(){
+    set(open => !open)
+    switch (props.nav.menu){
       case true: {
-        this.menuVisable = "nav--open"
-        return this.props.nav.menuClose()
+        props.nav.menuClose()
+        break
       }
       case false: {
-        this.menuVisable = ""
-        return this.props.nav.menuOpen()
+        props.nav.menuOpen()
+        break
       }
+      default: break 
     } 
   }
-  render(){
-    return (
-      <MainMenuContainer className={this.menuVisable}>
-        <MenuOptionContainer className="menu">
-          {Options.map(item => (
-            <MenuOption key={item.name} onClick={() => this.handleMenuSelect(item.link)}>{item.name}</MenuOption>
-          ))}
-        </MenuOptionContainer>
-        <MenuButton onClick={this.onMenuOpen.bind(this)}>   
-          <MenuBar />
-          <MenuBar />
-        </MenuButton>
-      </MainMenuContainer>
-    )
+  function handleMenuSelect(link) {
+    props.history.push(`${link}`)
   }
+  // This will orchestrate the two animations above, comment the last arg and it creates a sequence
+  useChain(open ? [menuBarBottomRef, menuBarTopRef,springRef, transRef] : [transRef, springRef, menuBarBottomRef, menuBarTopRef], [open ? 0.2 : 0,open ? 0.2 : 0.3, open ? 0 : 0, open ? 0.5 : 0], 1500)
+
+  return (
+    <MainMenuContainer style={{ ...rest, width: mainWidth }}>
+      <MenuButton onClick={() => onMenuOpen()}> 
+        <MenuBar style={menuBarTop }/>
+        <MenuBar style={menuBarBottom }/>
+      </MenuButton>
+      <Container style={{ ...rest, width: size }} >
+        {transitions.map(({ item, key, props }) => (
+          <Item key={key} style={{ ...props, background: item.css }} onClick={() => handleMenuSelect(item.link)}>{item.name}</Item>
+        ))}
+      </Container>
+    </MainMenuContainer>
+  )
 }
-export default Menu
 
 
