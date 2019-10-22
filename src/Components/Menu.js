@@ -49,7 +49,7 @@ export default function Menu(props) {
     enter: { opacity: 1, transform: 'scale(1)' },
     leave: { opacity: 0, transform: 'scale(0)' }
   })
-
+  
   function onMenuOpen(){
     set(open => !open)
     switch (props.nav.menu){
@@ -67,8 +67,8 @@ export default function Menu(props) {
   function handleMenuSelect(link) {
     props.history.push(`${link}`)
   }
-  // This will orchestrate the two animations above, comment the last arg and it creates a sequence
-  useChain(open ? [menuBarBottomRef, menuBarTopRef,springRef, transRef] : [transRef, springRef, menuBarBottomRef, menuBarTopRef], [open ? 0.2 : 0,open ? 0.2 : 0.3, open ? 0 : 0, open ? 0.5 : 0], 1500)
+
+  useChain(open ? [menuBarBottomRef, menuBarTopRef, springRef, transRef] : [transRef, springRef, menuBarBottomRef, menuBarTopRef], [open ? 0.2 : 0,open ? 0.2 : 0.3, open ? 0 : 0, open ? 0.5 : 0], 1500)
 
   return (
     <MainMenuContainer style={{ ...rest, width: mainWidth }}>

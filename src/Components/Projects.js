@@ -38,8 +38,8 @@ export default function MainDiv(props) {
   const sliderRef = useRef()
   const sliderProps = useSpring({
     ref: sliderRef,
-    from: { width:  "0%"},
-    to: { width:   `calc(100% - ${props.nav.menu ? 350 : 90}px)`},
+    from: { width:  `calc(100% - 0px)`},
+    to: { width:   `calc(100% - 90px)`},
     config: config.slow,
   })
 
