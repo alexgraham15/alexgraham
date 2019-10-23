@@ -30,20 +30,20 @@ export default function MainDiv(props) {
   const contentRef = useRef()
   const contentProps = useSpring({
     ref: contentRef,
-    from: { width:  `calc(100% - ${!props.nav.menu ? 350 : 90}px)`},
-    to: { width:   `calc(100% - ${props.nav.menu ? 350 : 90}px)`},
+    from: { width:  `calc(100% - ${props.nav.menu ? 90 : 370}px)`},
+    to: { width:   `calc(100% - ${props.nav.menu ? 370 : 90}px)`},
     config: config.slow,
   })
 
   const sliderRef = useRef()
   const sliderProps = useSpring({
     ref: sliderRef,
-    from: { width:  `calc(100% - 0px)`},
+    from: { width:  `calc(100% - 90px)`},
     to: { width:   `calc(100% - 90px)`},
     config: config.slow,
   })
 
-  useChain(props.nav.menu ? [contentRef, textRef, sliderRef] : [sliderRef, textRef, contentRef] , [props.nav.menu ? 0 : 0.5, 0.5, props.nav.menu ? 1 : 0])
+  useChain(props.nav.menu ? [contentRef, textRef, sliderRef] : [sliderRef, textRef, contentRef] , [props.nav.menu ? 0 : 0.5, 0.5, props.nav.menu ? 0 : 0.5])
 
   return (
     <animated.div style={contentProps}>
@@ -57,7 +57,7 @@ export default function MainDiv(props) {
             </animated.div>
           )}
           <animated.div id="project" style={sliderProps}>
-              <Viewpager />
+            <Viewpager {...props} />
           </animated.div>
         </header>
       </Container>

@@ -24,7 +24,7 @@ const Item = styled(animated.h2)`
 const MainMenuContainer = styled(animated.div)`
     position:absolute;
     top:0px;
-    zIndex:2;
+    z-index:2;
     width:60px;
     height:100%;
     will-change: width;

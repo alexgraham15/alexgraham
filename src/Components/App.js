@@ -32,9 +32,9 @@ class App extends Component{
         <div className="App">
           <header className="App-header">
             <Switch>
-              <Route  exact path="/" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
-              <Route  exact path="/AboutAlex" render={(props) => <Hero className={"Hero "+this.props.menuVisable} {...props} nav={this.props}/>}  />
-              <Route  exact path="/Projects" render={(props) => <Projects className={"Projects "+this.props.menuVisable} {...props} nav={this.props}/>}  />
+              <Route  exact path="/" render={(props) => <Hero className={"Hero"} {...props} nav={this.props}/>}  />
+              <Route  exact path="/AboutAlex" render={(props) => <Hero className={"Hero"} {...props} nav={this.props}/>}  />
+              <Route  exact path="/Projects" render={(props) => <Projects className={"Projects"} {...props} nav={this.props}/>}  />
             </Switch>
           </header>
         </div>
