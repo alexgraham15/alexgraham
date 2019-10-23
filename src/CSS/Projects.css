@@ -22,8 +22,8 @@ h1{
     position: relative;
     overflow: hidden;
     height: 70vh;
-    cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 10 10,
-    auto;
+    /* cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 10 10, auto;*/
+    cursor: url('../Media/dot.png') 10 10, auto;
 }
   
 #project > div {
@@ -70,4 +70,22 @@ h1{
 #project > div > div > div > div > p{
     font-size: 65%;
     line-height: 1;
+    display: flex;
+justify-content: flex-start;
+align-items: auto;
+flex-direction: row;
+}
+
+#project > div > div > div > small{
+    font-size: 10pt;
+    line-height: 1;
+}
+
+a {
+    color: limegreen;
+}
+
+.projectImage{
+    height: 30px;
+    margin: 0 10px 0 10px;
 }

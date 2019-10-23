@@ -12,15 +12,14 @@ export default function MainDiv(props) {
   
   const items = [
     {key: 1, element: <h1>Profile</h1>},
-    {key: 2, element: <p>Swipe through some of my latest projects</p>}
+    {key: 2, element: <p>Swipe through some of my latest commercial and personal development projects</p>}
   ]
 
   const textRef = useRef()
   const transitions = useTransition(items, item => item.key, {
     ref: textRef,
     config: config.slow,
-    unique: true,
-    trail: 400 ,
+    unique: false,
     initial: { opacity: 0,transform: 'translate3d(-100, 0%,0)' },
     from: { opacity: 0,  transform: 'translate3d(-100%,0%,0)' },
     enter: { opacity: 1,  transform: 'translate3d(0%, 0%,0)' },
@@ -38,8 +37,9 @@ export default function MainDiv(props) {
   const sliderRef = useRef()
   const sliderProps = useSpring({
     ref: sliderRef,
-    from: { width:  `calc(100% - 90px)`},
-    to: { width:   `calc(100% - 90px)`},
+    delay: 500,
+    from: { width:  `calc(100% - 90px)`, opacity:0},
+    to: { width:   `calc(100% - 90px)`, opacity: 1},
     config: config.slow,
   })
 
