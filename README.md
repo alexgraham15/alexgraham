@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Preface
 
 This is a portfolio website created to demonstrate an understanding of React JS, Redux and React Spring. This project can be cloned and edited to suit your needs or just to read the source code. 
