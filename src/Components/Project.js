@@ -6,15 +6,16 @@ import ProjectFile from './ProjectFile'
 import '../CSS/p.css'
 import CSS3 from '../Media/css3.png'
 import HTML5 from '../Media/html5.png'
-import java from '../Media/java.jpg'
+import java from '../Media/java.png'
 import jQuery from '../Media/jQuery.png'
 import js from '../Media/js.png'
-import mongodb from '../Media/mongodb.jpg'
+import mongodb from '../Media/mongodb.png'
 import php from '../Media/php.png'
-import MySQL from '../Media/MySQL.jpg'
-import node from '../Media/node.jpg'
+import MySQL from '../Media/mysql.png'
+import node from '../Media/node.png'
 import reactSpring from '../Media/react-spring.png'
 import react from '../Media/react.png'
+import redux from '../Media/redux.png'
 import swift from '../Media/swift.png'
 import GIFImage from '../Media/1.gif'
 
@@ -24,7 +25,7 @@ const pages = [
   {image: GIFImage, sourceCode: false, sourceCodeLink: "", title: "Franchise Book System", description: "Customised wordpress site to manage client bookings per franchise. Bespoke user management with a custom user interface allowing clients to purchase and manage their bookings in addition to allowing franchisees the flexibility", learnings: "Customisation of pre-built plugins to suit a growing business need", frontendStack: [HTML5, CSS3], backendStack: [php, MySQL], keyLibraries: "Booking-Activities"},
   {image: GIFImage, sourceCode: false, sourceCodeLink: "", title: "SMS Callout System", description: "Design, build and release a dedicated call out system for managing contacts and delivering SMS messages with delivery reports", learnings: "SMS gateway access from PHP", frontendStack: [HTML5, CSS3, js], backendStack: [php, MySQL], keyLibraries: ""},
   {image: GIFImage, sourceCode: false, sourceCodeLink: "", title: "Virtual Exercise Network", description: "Design, build and release from a concept - to take management training and exercise virtual. This involved dynamic environment updates, social media simulation and hosting video", learnings: "Web socket transport, video hosting and avaiability", frontendStack: [HTML5, CSS3, js], backendStack: [php, MySQL], keyLibraries: "Socket IO"},
-  {image: GIFImage, sourceCode: true, sourceCodeLink: "https://github.com/alexgraham15/alexgraham", title: "This Portfolio", description: "A small portfolio to demonstrate front end React scripts as well as outline some of my recent commerical and developmental project work", learnings: "Integrating the React-Spring library", frontendStack: [react, reactSpring, HTML5, CSS3, js], backendStack: [], keyLibraries: "React, React-Router, React-Spring"},   
+  {image: GIFImage, sourceCode: true, sourceCodeLink: "https://github.com/alexgraham15/alexgraham", title: "This Portfolio", description: "A small portfolio to demonstrate front end React scripts as well as outline some of my recent commerical and developmental project work", learnings: "Integrating the React-Spring library", frontendStack: [react, redux, reactSpring, HTML5, CSS3, js], backendStack: [], keyLibraries: "React, React-Router, React-Spring"},   
 ]
 
 

@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Hero from './Hero'
+import AboutMe from './AboutMe'
 import Menu from './Menu'
 import Projects from './Projects'
+import Contact from './Contact'
 import { openMenu, closeMenu } from '../Actions/menuActions'
 import '../CSS/App.css';
 
@@ -14,7 +16,6 @@ function mapStateToProps(store) {
     contWidth: store.menuLayout.containerWidth
   }
 }
-
 
 function mapDispatchToProps(dispatch) { 
   return { 
@@ -33,8 +34,9 @@ class App extends Component{
           <header className="App-header">
             <Switch>
               <Route  exact path="/" render={(props) => <Hero className={"Hero"} {...props} nav={this.props}/>}  />
-              <Route  exact path="/AboutAlex" render={(props) => <Hero className={"Hero"} {...props} nav={this.props}/>}  />
+              <Route  exact path="/AboutAlex" render={(props) => <AboutMe className={"AboutAlex"} {...props} nav={this.props}/>}  />
               <Route  exact path="/Projects" render={(props) => <Projects className={"Projects"} {...props} nav={this.props}/>}  />
+              <Route  exact path="/Contact" render={(props) => <Contact className={"Contact"} {...props} nav={this.props}/>}  />
             </Switch>
           </header>
         </div>

@@ -4,7 +4,7 @@ import '../CSS/p.css'
 
 
 const ProjectSectionText = ({item}) => <div><h4>{item.title}</h4><p>{item.description}</p></div>
-const ProjectSectionImage = ({item}) => <div><h4>{item.title}</h4><p>{item.description.length == 0 ? "N/A" : item.description.map(((i) => (<img key={i} className="projectImage" src={i}/>)))}</p></div>
+const ProjectSectionImage = ({item}) => <div><h4>{item.title}</h4><p>{item.description.length === 0 ? "N/A" : item.description.map(((i) => (<img key={i} className="projectImage" src={i} alt={i}/>)))}</p></div>
 
 export default function PrjectFile(props){
     return (
@@ -14,7 +14,7 @@ export default function PrjectFile(props){
                 <h1>
                 {props.project.title}
                 </h1>
-                <small>Source Code: {props.project.sourceCode ? <a href={props.project.sourceCodeLink} target="_blank"><i className="fab fa-github"></i></a>:<i className="fal fa-eye-slash"></i> }</small>
+                <small>Source Code: {props.project.sourceCode ? <a href={props.project.sourceCodeLink} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>:<i className="fal fa-eye-slash"></i> }</small>
                 <ProjectSectionText item={{title: "Description", description: props.project.description}}/>
                 <ProjectSectionImage item={{title: "Frontend Stack", description: props.project.frontendStack}}/>
                 <ProjectSectionImage item={{title: "Backend Stack", description: props.project.backendStack}}/>

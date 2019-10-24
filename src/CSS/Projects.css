@@ -1,11 +1,8 @@
 .Projects {
     text-align: center;
-    /* background-image: url('../Media/codeBackground.png'); */
     background-color: #282c34;
   }
 .Projects-header {
-    /* background-image: 
-    radial-gradient(farthest-corner at 0px 100%,rgba(40,44,52,1) 75%, rgba(40,44,52,0.7021183473389356) 100%); */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -13,6 +10,7 @@
     justify-content: flex-start;
     font-size: calc(10px + 2vmin);
     color: white;
+    text-align: left;
 }
 h1{
     font-weight: 100;
@@ -22,7 +20,6 @@ h1{
     position: relative;
     overflow: hidden;
     height: 70vh;
-    /* cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 10 10, auto;*/
     cursor: url('../Media/dot.png') 10 10, auto;
 }
   
@@ -65,15 +62,15 @@ h1{
 #project > div > div > div > div > h4{
     margin-top: 1em;
     margin-bottom:0.5em;
-    font-size: 80%;
+    font-size: 85%;
 }
 #project > div > div > div > div > p{
-    font-size: 65%;
+    font-size: 61%;
     line-height: 1;
     display: flex;
-justify-content: flex-start;
-align-items: auto;
-flex-direction: row;
+    justify-content: flex-start;
+    align-items: auto;
+    flex-direction: row;
 }
 
 #project > div > div > div > small{
