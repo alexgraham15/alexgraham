@@ -15,8 +15,9 @@
 h1{
     font-weight: 100;
 }
-input{
+input, textarea{
     height: 100px;
+    width: "50%";
     font-family: Alcubierre, serif;
     background-color: unset;
     border: unset;
@@ -32,20 +33,31 @@ input{
     text-transform: uppercase;
     padding:0 10px 0px 10px;
 }
-input:focus{
+textarea{
+    resize: vertical;
+    height: 500px;
+}
+input:focus, textarea:focus{
     outline: unset;
 }
 button{
-    height: 30px;
-    width: 70px;
     font-family: Alcubierre, serif;
     margin: 0;
     position: absolute;
-    
-    color: red;
-    top: calc(50% + 100px);
+    color: white;
     left: calc(75% - 35px);
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     cursor: pointer;
+    font-size: 25pt;
+    background: unset;
+    outline: unset;
+    border: unset;
+}
+.contact-form{
+    width: calc(100% - 90px);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    height: 80vh;
+    position: relative;
 }

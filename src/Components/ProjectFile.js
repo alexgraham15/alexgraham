@@ -1,6 +1,10 @@
 import React from 'react'
 import { animated } from 'react-spring'
 import '../CSS/p.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {  faEyeSlash } from '@fortawesome/pro-light-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
 
 
 const ProjectSectionText = ({item}) => <div><h4>{item.title}</h4><p>{item.description}</p></div>
@@ -14,7 +18,7 @@ export default function PrjectFile(props){
                 <h1>
                 {props.project.title}
                 </h1>
-                <small>Source Code: {props.project.sourceCode ? <a href={props.project.sourceCodeLink} target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>:<i className="fal fa-eye-slash"></i> }</small>
+                <small>Source Code: {props.project.sourceCode ? <a href={props.project.sourceCodeLink} target="_blank" rel="noopener noreferrer"><FontAwesomeIcon icon={faGithub}/></a>:<FontAwesomeIcon icon={faEyeSlash}/> }</small>
                 <ProjectSectionText item={{title: "Description", description: props.project.description}}/>
                 <ProjectSectionImage item={{title: "Frontend Stack", description: props.project.frontendStack}}/>
                 <ProjectSectionImage item={{title: "Backend Stack", description: props.project.backendStack}}/>

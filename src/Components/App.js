@@ -8,12 +8,15 @@ import Menu from './Menu'
 import Projects from './Projects'
 import Contact from './Contact'
 import { openMenu, closeMenu } from '../Actions/menuActions'
+import { updateName, updateEmail, updateMessage } from '../Actions/contactFromActions'
 import '../CSS/App.css';
 
 function mapStateToProps(store) {
   return { 
     menu: store.menuLayout.menuOpen,
-    contWidth: store.menuLayout.containerWidth
+    name: store.contactFormInfo.name,
+    email: store.contactFormInfo.email,
+    message: store.contactFormInfo.message
   }
 }
 
@@ -21,7 +24,10 @@ function mapDispatchToProps(dispatch) {
   return { 
     dispatch, 
     menuOpen:bindActionCreators(openMenu, dispatch),
-    menuClose:bindActionCreators(closeMenu, dispatch)
+    menuClose:bindActionCreators(closeMenu, dispatch),
+    nameUpdate:bindActionCreators(updateName, dispatch),
+    emailUpdate:bindActionCreators(updateEmail, dispatch),
+    messageUpdate:bindActionCreators(updateMessage, dispatch)
   } 
 }
 

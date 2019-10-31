@@ -53,7 +53,7 @@ export default function MainDiv(props) {
               {item.element}
             </animated.div>
           )}
-          <ContactForm />
+          <ContactForm {...props} />
         </animated.header>
       </Container>
     </animated.div>
